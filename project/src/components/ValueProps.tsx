@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Target, Users, FileText, Star, TrendingUp, Shield, Zap, Award, CheckCircle, ArrowRight } from 'lucide-react';
+import { Star, Award, CheckCircle, ArrowRight } from 'lucide-react';
 
 const ValueProps: React.FC = () => {
 

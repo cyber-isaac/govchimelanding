@@ -1,9 +1,28 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Search, Bell } from 'lucide-react';
 
 const SearchHeader: React.FC = () => {
   const [searchQuery, setSearchQuery] = useState('');
+  const [isDark, setIsDark] = useState(false);
+
+  useEffect(() => {
+    // Check initial theme
+    const checkTheme = () => {
+      setIsDark(document.documentElement.classList.contains('dark'));
+    };
+    
+    checkTheme();
+    
+    // Listen for theme changes
+    const observer = new MutationObserver(checkTheme);
+    observer.observe(document.documentElement, { 
+      attributes: true, 
+      attributeFilter: ['class'] 
+    });
+    
+    return () => observer.disconnect();
+  }, []);
 
   return (
     <motion.section
@@ -11,19 +30,19 @@ const SearchHeader: React.FC = () => {
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8, ease: [0.4, 0, 0.2, 1] }}
       className={`relative border-b overflow-hidden transition-all duration-500 ${
-        document.documentElement.classList.contains('dark')
+        isDark
           ? 'bg-gradient-to-br from-slate-950 via-blue-950/30 to-purple-950/20 border-white/10'
           : 'bg-gradient-to-br from-blue-50 via-white to-purple-50 border-gray-200'
       }`}
     >
       {/* Background Pattern */}
       <div className={`absolute inset-0 ${
-        document.documentElement.classList.contains('dark')
+        isDark
           ? 'bg-[radial-gradient(circle_at_50%_50%,rgba(59,130,246,0.1),transparent_50%)]'
           : 'bg-[radial-gradient(circle_at_50%_50%,rgba(59,130,246,0.05),transparent_50%)]'
       }`} />
       <div className={`absolute inset-0 ${
-        document.documentElement.classList.contains('dark')
+        isDark
           ? 'bg-[linear-gradient(45deg,transparent_25%,rgba(255,255,255,0.02)_50%,transparent_75%)]'
           : 'bg-[linear-gradient(45deg,transparent_25%,rgba(59,130,246,0.02)_50%,transparent_75%)]'
       }`} />
@@ -51,7 +70,7 @@ const SearchHeader: React.FC = () => {
             </div>
             <motion.h2
               className={`text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight tracking-tight transition-colors duration-500 ${
-                document.documentElement.classList.contains('dark') ? 'text-white' : 'text-gray-900'
+                isDark ? 'text-white' : 'text-gray-900'
               }`}
               style={{
                 fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif",
@@ -65,7 +84,7 @@ const SearchHeader: React.FC = () => {
 
           <motion.h1
             className={`text-3xl sm:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-bold mb-8 leading-[1.1] tracking-tight transition-colors duration-500 ${
-              document.documentElement.classList.contains('dark') ? 'text-white' : 'text-gray-900'
+              isDark ? 'text-white' : 'text-gray-900'
             }`}
             style={{
               fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif",
@@ -85,7 +104,7 @@ const SearchHeader: React.FC = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
             className={`text-lg sm:text-xl lg:text-2xl max-w-4xl mx-auto leading-relaxed font-medium transition-colors duration-500 ${
-              document.documentElement.classList.contains('dark') ? 'text-gray-300' : 'text-gray-600'
+              isDark ? 'text-gray-300' : 'text-gray-600'
             }`}
             style={{
               fontFamily: "'Inter', system-ui, sans-serif",
@@ -106,18 +125,18 @@ const SearchHeader: React.FC = () => {
         >
           <div className="relative group">
             <div className={`absolute inset-0 rounded-2xl blur-xl group-hover:blur-2xl transition-all duration-300 ${
-              document.documentElement.classList.contains('dark')
+              isDark
                 ? 'bg-gradient-to-r from-blue-500/20 to-purple-500/20'
                 : 'bg-gradient-to-r from-blue-500/10 to-purple-500/10'
             }`} />
             <div className={`relative backdrop-blur-xl rounded-2xl p-2 shadow-2xl transition-all duration-500 ${
-              document.documentElement.classList.contains('dark')
+              isDark
                 ? 'bg-white/10 border border-white/20'
                 : 'bg-white/80 border border-gray-200'
             }`}>
               <div className="relative">
                 <Search className={`absolute left-6 top-1/2 transform -translate-y-1/2 w-6 h-6 transition-colors duration-500 ${
-                  document.documentElement.classList.contains('dark') ? 'text-gray-400' : 'text-gray-500'
+                  isDark ? 'text-gray-400' : 'text-gray-500'
                 }`} />
                 <motion.input
                   whileFocus={{ scale: 1.01 }}
@@ -127,7 +146,7 @@ const SearchHeader: React.FC = () => {
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                   className={`w-full pl-16 pr-6 py-5 bg-transparent text-lg focus:outline-none focus:ring-0 border-0 transition-colors duration-500 ${
-                    document.documentElement.classList.contains('dark')
+                    isDark
                       ? 'text-white placeholder-gray-400'
                       : 'text-gray-900 placeholder-gray-500'
                   }`}

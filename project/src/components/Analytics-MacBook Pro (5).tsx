@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
-import { BarChart3, MapPin, TrendingUp, Filter, Lock, Crown, Calendar, Building } from 'lucide-react';
+import { BarChart3, MapPin, TrendingUp, Calendar, Building } from 'lucide-react';
 
 const Analytics: React.FC = () => {
   const chartRef = useRef<HTMLCanvasElement>(null);
@@ -9,9 +9,8 @@ const Analytics: React.FC = () => {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [hoveredCategory, setHoveredCategory] = useState<string | null>(null);
   const [showModal, setShowModal] = useState(false);
-  const [isProUser, setIsProUser] = useState(false); // For demo purposes - would come from user context
-  const [selectedFilter, setSelectedFilter] = useState('all');
-  const [selectedTimeframe, setSelectedTimeframe] = useState('12m');
+  const [isProUser] = useState(false); // For demo purposes - would come from user context
+  const [selectedTimeframe] = useState('12m');
 
   const contractCategories = React.useMemo(() => [
     { name: 'Standard Procurement', value: 847, color: '#3b82f6', description: 'Regular competitive contracts with standard terms' },
@@ -321,10 +320,9 @@ const Analytics: React.FC = () => {
 
 
         {/* Pro Plan Content */}
-        */}
+        {isProUser && (
           <>
-
-
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
               {/* Contract Awards by State */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
@@ -338,7 +336,7 @@ const Analytics: React.FC = () => {
                 </div>
 
                 <div className="space-y-4">
-                  {stateData.map((state, index) => (
+                  {stateData.map((state) => (
                     <div key={state.state} className="flex items-center justify-between">
                       <div className="flex items-center gap-3">
                         <div
@@ -375,7 +373,7 @@ const Analytics: React.FC = () => {
                 </div>
 
                 <div className="space-y-4">
-                  {naicsData.map((naics, index) => (
+                  {naicsData.map((naics) => (
                     <div key={naics.code} className="space-y-2">
                       <div className="flex items-center justify-between">
                         <div className="flex items-center gap-3">
@@ -417,7 +415,7 @@ const Analytics: React.FC = () => {
 
               {/* Simple Bar Chart Representation */}
               <div className="h-64 flex items-end justify-between gap-2">
-                {timeSeriesData.map((data, index) => {
+                {timeSeriesData.map((data) => {
                   const maxValue = Math.max(...timeSeriesData.map(d => d.value));
                   const height = (data.value / maxValue) * 200;
 

@@ -1,41 +1,8 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Target, Users, FileText, Star, TrendingUp, Shield, Zap, Award, CheckCircle, ArrowRight } from 'lucide-react';
+import { Star, Award, CheckCircle, ArrowRight } from 'lucide-react';
 
 const ValueProps: React.FC = () => {
-  const benefits = [
-    {
-      title: '3x Higher Win Rate',
-      description: 'Companies using GovChime win 3x more contracts than industry average',
-      icon: TrendingUp,
-      color: 'text-emerald-400',
-      bgColor: 'bg-emerald-400/10',
-      borderColor: 'border-emerald-400/20',
-      stat: '3x',
-      statLabel: 'Higher Win Rate'
-    },
-    {
-      title: '60% Time Savings',
-      description: 'Cut bid/no-bid analysis time from hours to minutes',
-      icon: Zap,
-      color: 'text-blue-400',
-      bgColor: 'bg-blue-400/10',
-      borderColor: 'border-blue-400/20',
-      stat: '60%',
-      statLabel: 'Time Saved'
-    },
-    {
-      title: '$2.4B+ Tracked',
-      description: 'Monitor over $2.4 billion in contract opportunities daily',
-      icon: Shield,
-      color: 'text-purple-400',
-      bgColor: 'bg-purple-400/10',
-      borderColor: 'border-purple-400/20',
-      stat: '$2.4B+',
-      statLabel: 'Opportunities'
-    }
-  ];
-
   const features = [
     {
       title: 'Smart Contract Discovery',

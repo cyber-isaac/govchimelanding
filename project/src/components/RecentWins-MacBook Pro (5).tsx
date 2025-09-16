@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { MapPin, Building, Award, ChevronLeft, ChevronRight } from 'lucide-react';
+import { MapPin, Building, Award } from 'lucide-react';
 
 const RecentWins: React.FC = () => {
   const recentWins = [
@@ -110,20 +110,6 @@ const RecentWins: React.FC = () => {
         return `${baseClasses} bg-purple-400/10 text-purple-300 border-purple-400/20`;
       default:
         return `${baseClasses} bg-gray-400/10 text-gray-300 border-gray-400/20`;
-    }
-  };
-
-  const scrollLeft = () => {
-    const container = document.querySelector('.carousel-container');
-    if (container) {
-      container.scrollBy({ left: -320, behavior: 'smooth' });
-    }
-  };
-
-  const scrollRight = () => {
-    const container = document.querySelector('.carousel-container');
-    if (container) {
-      container.scrollBy({ left: 320, behavior: 'smooth' });
     }
   };
 
