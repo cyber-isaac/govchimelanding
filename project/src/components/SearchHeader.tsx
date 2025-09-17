@@ -83,14 +83,14 @@ const SearchHeader: React.FC = () => {
           </motion.div>
 
           <motion.h1
-            className={`text-3xl sm:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-bold mb-8 leading-[1.1] tracking-tight transition-colors duration-500 ${
+            className={`text-3xl sm:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-bold mb-8 leading-[1.3] tracking-tight transition-colors duration-500 ${
               isDark ? 'text-white' : 'text-gray-900'
             }`}
             style={{
               fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif",
               fontWeight: 700,
               letterSpacing: '-0.02em',
-              lineHeight: '1.1'
+              lineHeight: '1.3'
             }}
           >
             <span className="block">Find, track, and win</span>
