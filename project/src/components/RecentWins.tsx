@@ -250,14 +250,20 @@ const RecentWins: React.FC = () => {
     <button
       onClick={scrollLeft}
       className="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-white/90 dark:bg-gray-800/90 backdrop-blur-lg rounded-full p-3 shadow-lg hover:shadow-xl transition-all duration-200 hover:scale-105 border border-gray-200 dark:border-gray-700"
+      aria-label="Scroll left"
+      title="Scroll left"
+      type="button"
     >
-      <ChevronLeft className="w-5 h-5 text-gray-700 dark:text-gray-300" />
+      <ChevronLeft className="w-5 h-5 text-gray-700 dark:text-gray-300" aria-hidden="true" focusable="false" />
     </button>
     <button
       onClick={scrollRight}
       className="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-white/90 dark:bg-gray-800/90 backdrop-blur-lg rounded-full p-3 shadow-lg hover:shadow-xl transition-all duration-200 hover:scale-105 border border-gray-200 dark:border-gray-700"
+      aria-label="Scroll right"
+      title="Scroll right"
+      type="button"
     >
-      <ChevronRight className="w-5 h-5 text-gray-700 dark:text-gray-300" />
+      <ChevronRight className="w-5 h-5 text-gray-700 dark:text-gray-300" aria-hidden="true" focusable="false" />
     </button>
 
     <div className="overflow-x-auto scrollbar-hide pb-4 carousel-container">
@@ -343,9 +349,6 @@ const RecentWins: React.FC = () => {
               </div>
             </div>
           </motion.div>
-        </div>
-      </div>
-
       {/* Carousel Indicators */}
       <div className="flex justify-center mt-6 space-x-2">
         <div className="flex space-x-2">
@@ -353,14 +356,19 @@ const RecentWins: React.FC = () => {
             <button
               key={index}
               className="w-3 h-3 rounded-full bg-blue-400/50 hover:bg-blue-400 transition-all duration-200"
+              aria-label={`Go to slide ${index + 1}`}
+              title={`Go to slide ${index + 1}`}
+              type="button"
               onClick={() => {
                 const container = document.querySelector('.carousel-container');
                 if (container) {
-                  container.scrollTo({ left: index * 320 * 4, behavior: 'smooth' });
+                  (container as HTMLElement).scrollIntoView({ behavior: 'smooth', block: 'end' });
                 }
               }}
             />
           ))}
+        </div>
+      </div>
         </div>
       </div>
     </div>
