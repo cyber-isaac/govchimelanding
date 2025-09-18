@@ -99,7 +99,6 @@ function App() {
             <div className={`text-center text-sm space-y-4 transition-colors duration-300 ${
               currentTheme === 'dark' ? 'text-gray-400' : 'text-gray-600'
             }`}>
-              <p>Data sourced from SAM.gov, USAspending.gov, and public resources. No guarantee of completeness.</p>
               <div className="flex justify-center gap-6">
                 <a href="#about" className={`hover:text-blue-600 transition-colors duration-200 ${
                   currentTheme === 'dark' ? 'text-gray-300' : 'text-gray-700'
