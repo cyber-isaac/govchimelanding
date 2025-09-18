@@ -2,26 +2,13 @@ import React from 'react';
 import { motion } from 'framer-motion';
 
 const Pricing: React.FC = () => {
+  // Single plan: $189/mo + $49/mo per additional seat
   const plans = [
     {
-      name: 'Basic',
-      price: '$25',
+      name: 'GovChime',
+      price: '$189',
       period: '/month',
-      description: 'Essential contract search and basic analytics',
-      features: [
-        'Up to 1,000 searches per month',
-        'GovCon contract database access',
-        'Standard entity profiles',
-        'Email support',
-        'Export CSV',
-      ],
-      highlighted: false,
-    },
-    {
-      name: 'Professional',
-      price: '$100',
-      period: '/month',
-      description: 'Advanced features for procurement teams',
+      description: 'Includes 1 seat. Additional seats $49/mo each.',
       features: [
         'Unlimited searches',
         'Full contract database access',
@@ -57,7 +44,7 @@ const Pricing: React.FC = () => {
             className="text-4xl font-bold text-black mb-4"
             style={{ fontFamily: "'Plus Jakarta Sans', Inter, sans-serif" }}
           >
-            Choose Your Plan
+            Simple Pricing
           </motion.h2>
           <motion.p
             initial={{ opacity: 0 }}
@@ -66,11 +53,12 @@ const Pricing: React.FC = () => {
             transition={{ duration: 0.3, delay: 0.2 }}
             className="text-gray-700 max-w-2xl mx-auto text-lg"
           >
-            Flexible pricing options designed for government contractors of all sizes.
+            One plan with everything you need. Add teammates anytime for $49/mo per extra seat.
           </motion.p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+        {/* Single-column layout for one plan */}
+        <div className="grid grid-cols-1 gap-8 max-w-3xl mx-auto">
           {plans.map((plan, index) => (
             <motion.div
               initial={{ opacity: 0, y: 40 }}
@@ -103,10 +91,12 @@ const Pricing: React.FC = () => {
               
               <div className="text-center mb-6">
                 <h3 className="text-2xl font-bold text-black mb-3">{plan.name}</h3>
-                <div className="mb-4">
+                <div className="mb-2">
                   <span className="text-4xl font-extrabold text-blue-900">{plan.price}</span>
                   <span className="text-lg font-semibold text-gray-600 ml-1">{plan.period}</span>
                 </div>
+                {/* Extra-seat note just below price */}
+                <div className="text-sm text-gray-600 mb-2">+ $49/mo per additional seat</div>
                 <p className="text-gray-700 text-base font-medium">{plan.description}</p>
               </div>
 
@@ -125,7 +115,7 @@ const Pricing: React.FC = () => {
                 transition={{ duration: 0.2 }}
                 className="w-full px-6 py-4 bg-blue-600 text-white rounded-lg font-bold text-base hover:bg-blue-700 transition-all duration-200 shadow-md hover:shadow-lg"
               >
-                {plan.price === 'Custom' ? 'Contact Sales' : 'Start Free Trial'}
+                Start Free Trial
               </motion.button>
             </motion.div>
           ))}
